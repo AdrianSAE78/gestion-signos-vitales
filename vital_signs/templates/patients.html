@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Pacientes{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="col-1">
+        <a href="{% url "vital_signs:index" %}" class="btn btn-sm btn-outline-secondary d-flex justify-content-center align-items-center mb-4">
+            <i class='bx bx-undo bx-sm'></i>
+            <span class="fw-bold">Inicio</span>
+        </a>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Edad</th>
+                            <th>Cédula</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for patient in patients %}
+                        <tr>
+                            <td>{{ patient.last_name }} {{ patient.middle_name }}  {{ patient.first_name }}</td>
+                            <td>{{ patient.age }}</td>
+                            <td>{{ patient.document_id }}</td>
+                            {% if user.is_authenticated %}
+                            <td>
+                                <a href="#" class="btn btn-sm btn-primary"><i class='bx bx-show bx-sm'></i></a>
+                                <a href="#" class="btn btn-sm btn-success"><i class='bx bx-pencil bx-sm'></i></a>
+                                <a href="#" class="btn btn-sm btn-danger"><i class='bx bx-trash bx-sm' ></i></a>
+                            </td>
+                            {% else %}
+                            <td>
+                                <a href="#" class="btn btn-sm btn-danger"><i class='bx bx-trash bx-sm' ></i></a>
+                            </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
