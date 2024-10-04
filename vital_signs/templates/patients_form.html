@@ -1,1 +1,113 @@
 {% extends "base.html" %}
+{% block title %}Agregar Paciente{% endblock title %}
+{% block content %}
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-2">
+            <a href="{% url "vital_signs:patients" %}" class="btn btn-sm btn-outline-secondary d-flex justify-content-center align-items-center mb-4">
+                <i class='bx bx-undo bx-sm'></i>
+                <span class="fw-bold">Pacientes</span>
+            </a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-4 mt-3">
+                    <div class="row g-3 align-items-center justify-content-center">
+
+                        <div class="col-auto">
+                            <label class="form-label fw-bold">Nombre: <span class="text-danger">*</span></label>
+                        </div>
+                        <div class="col-auto">
+                            {{ form.first_name }}
+                        </div>
+   
+                        <div class="col-auto">
+                            <label class="form-label fw-bold">Apellido Paterno: <span class="text-danger">*</span></label>
+                        </div>
+                        <div class="col-auto">
+                            {{ form.middle_name }}
+                        </div>
+            
+                        <div class="col-auto">
+                            <label class="form-label fw-bold">Apellido Materno: <span class="text-danger">*</span></label>
+                        </div>
+                        <div class="col-auto">
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="row g-3 align-items-center">
+                       
+                        <div class="col-auto">
+                            <label class="form-label fw-bold">Cédula: <span class="text-danger">*</span></label>
+                        </div>
+                        <div class="col-auto">
+                            {{ form.document_id }}
+                        </div>
+                      
+                        <div class="col-auto">
+                            <label class="form-label fw-bold">Fecha de nacimiento: <span class="text-danger">*</span></label>
+                        </div>
+                        <div class="col-auto">
+                            {{ form.birth_date }}
+                        </div>
+                    
+                        <div class="col-auto">
+                            <label class="form-label fw-bold">Edad: <span class="text-danger">*</span></label>
+                        </div>
+                        <div class="col-1">
+                            {{ form.age }}
+                        </div>
+                      
+                        <div class="col-auto">
+                            <label class="form-label fw-bold">Teléfono: <span class="text-danger">*</span></label>
+                        </div>
+                        <div class="col-auto">
+                            {{ form.phone }}
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Enfermedades: <span class="text-danger">*</span></label>
+                    {{ form.diseases }}
+                </div>
+                <button type="submit" class="btn btn-success">Guardar Paciente</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    let birthDate = $('#id_birth_date')
+    let age = $('#id_age')
+
+    function calculateAge(){
+        let date = new Date();
+
+        let actualYear = date.getFullYear();
+        let actualMonth = date.getMonth()+1;
+        let actualDay = date.getDate();
+
+        let dateEntered = new Date(birthDate.val());
+
+        let yearEntered = dateEntered.getFullYear();
+        let monthEntered = dateEntered.getMonth()+1;
+        let dayEntered = dateEntered.getDate();
+        
+        getAge = actualYear - yearEntered;
+
+        month = actualMonth - monthEntered;
+
+        if(month < 0 || (month === 0 && actualDay < dayEntered)){
+            getAge--;
+        }
+
+        return age.val(getAge)
+        
+    }
+</script>
+
+{% endblock content %}

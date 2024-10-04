@@ -6,7 +6,7 @@ class Patient (models.Model):
     first_name = models.CharField(max_length=50, null=False)
     middle_name = models.CharField(max_length=50, null=False)
     last_name = models.CharField(max_length=50, null=False)
-    document_id = models.IntegerField(max_length=10, unique=True, null=False)
+    document_id = models.IntegerField(unique=True, null=False)
     birth_date = models.DateField(null=False)
     age = models.IntegerField(null=False)
     phone = models.CharField(max_length=15, null=True)

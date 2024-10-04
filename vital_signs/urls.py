@@ -22,5 +22,8 @@ app_name = 'vital_signs'
 urlpatterns = [
     path('', views.index, name='index'),
 
-    path('/patients', views.table_patients, name='patients')
+    path('patients', views.table_patients, name='patients'),
+    path('patients/patients_form', views.form_patient, name='patients_form'),
+
+    path('vital_signs', views.form_vital_signs, name='vital_signs_form'),
 ]

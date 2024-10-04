@@ -1,23 +1,32 @@
 {% extends "base.html" %}
 {% block title %}Pacientes{% endblock title %}
 {% block content %}
+
 <div class="container">
-    <div class="col-1">
-        <a href="{% url "vital_signs:index" %}" class="btn btn-sm btn-outline-secondary d-flex justify-content-center align-items-center mb-4">
-            <i class='bx bx-undo bx-sm'></i>
-            <span class="fw-bold">Inicio</span>
-        </a>
+    <div class="row">
+        <div class="col-1">
+            <a href="{% url "vital_signs:index" %}" class="btn btn-sm btn-outline-secondary d-flex justify-content-center align-items-center mb-4">
+                <i class='bx bx-undo bx-sm'></i>
+                <span class="fw-bold">Inicio</span>
+            </a>
+        </div>
+        <div class="col-11 d-flex justify-content-end">
+            <a href="{% url "vital_signs:patients_form" %}" class="btn btn-sm btn-success d-flex justify-content-center align-items-center mb-4">
+                <i class='bx bx-user bx-sm'></i>
+                <span class="fw-bold">Agregar Paciente</span>
+            </a>
+        </div>
     </div>
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-striped my-4" id="tbl_pacientes">
                     <thead>
                         <tr>
                             <th>Nombre</th>
                             <th>Edad</th>
                             <th>Cédula</th>
-                            <th>Acciones</th>
+                            <th width="15%">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,4 +54,33 @@
         </div>
     </div>
 </div>
+<script>
+
+    $(document).ready(function() {
+        var table = $('#tbl_pacientes').DataTable({
+            language: {
+                "decimal": "",
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                "infoPostFix": "",
+                "thousands": ",",
+                "lengthMenu": "Mostrar _MENU_ Entradas",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscar:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            }
+        });
+
+    });
+    
+</script>
 {% endblock content %}
