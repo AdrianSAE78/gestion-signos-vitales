@@ -17,13 +17,13 @@ class Patient (models.Model):
     
 
 class Vital_Signs (models.Model):
-    blood_pressure = models.DecimalField(max_digits=4, decimal_places=2, null=False)
-    temperature = models.DecimalField(max_digits=4, decimal_places=2, null=False)
-    heart_Rate = models.DecimalField(max_digits=4, decimal_places=2, null=False)
-    weight = models.DecimalField(max_digits=4, decimal_places=2, null=False)
-    height = models.DecimalField(max_digits=4, decimal_places=2, null=False)
-    body_mass_index = models.DecimalField(max_digits=4, decimal_places=2, null=False)
-    patient = models.ManyToManyField(Patient)
+    blood_pressure = models.DecimalField(max_digits=5, decimal_places=2, null=False)
+    temperature = models.DecimalField(max_digits=5, decimal_places=2, null=False)
+    heart_Rate = models.DecimalField(max_digits=5, decimal_places=2, null=False)
+    weight = models.DecimalField(max_digits=5, decimal_places=2, null=False)
+    height = models.DecimalField(max_digits=5, decimal_places=2, null=False)
+    body_mass_index = models.DecimalField(max_digits=5, decimal_places=2, null=False)
+    patient = models.ForeignKey(Patient, on_delete=models.RESTRICT)
 
     def __str__(self) -> str:
         return f'{self.patient} - {self.blood_pressure}'

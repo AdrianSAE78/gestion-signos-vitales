@@ -26,4 +26,6 @@ urlpatterns = [
     path('patients/patients_form', views.form_patient, name='patients_form'),
 
     path('vital_signs', views.form_vital_signs, name='vital_signs_form'),
+
+    path("login/", views.CustomLoginView.as_view(), name="login"),
 ]

@@ -25,8 +25,8 @@ class Vital_SignsForm(forms.ModelForm):
             'blood_pressure' : forms.NumberInput(attrs={'class':'form-control'}),
             'temperature' : forms.NumberInput(attrs={'class':'form-control'}),
             'heart_Rate' : forms.NumberInput(attrs={'class':'form-control'}),
-            'weight' : forms.NumberInput(attrs={'class':'form-control'}),
-            'height' : forms.NumberInput(attrs={'class':'form-control'}),
+            'weight' : forms.NumberInput(attrs={'class':'form-control', 'onChange':'calcIMC();'}),
+            'height' : forms.NumberInput(attrs={'class':'form-control', 'onChange':'calcIMC();'}),
             'body_mass_index' : forms.NumberInput(attrs={'class':'form-control', 'readonly':'readonly'}),
             'patient' : forms.Select(attrs={'class':'form-select'}),
         }
