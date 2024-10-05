@@ -63,6 +63,15 @@
 </div>
 
 <script>
+    $(document).ready(function(){
+        $('.patient_select2').select2({
+            theme: 'bootstrap-5',
+            placeholder: "Selecciona un paciente"
+        });
+
+        $('#id_heart_Rate').addClass('inferior-superior-level')
+        $('#id_height').addClass('good-level')
+    })
     function calcIMC() {
         let weight = $('#id_weight').val();
         let height = $('#id_height').val();
@@ -71,6 +80,17 @@
         let finalIMC = weight/(height)**2
 
         return IMC.val(finalIMC.toFixed(2))
+    }
+
+    function temperatureLevel(){
+        let temperature = parseFloat($('#id_temperature').val());
+        if (temperature >= 36.5 && temperature <= 37){
+            $('#id_temperature').removeClass('inferior-superior-level')
+            $('#id_temperature').addClass('good-level')
+        } else{
+            $('#id_temperature').removeClass('good-level')
+            $('#id_temperature').addClass('inferior-superior-level')
+        }
     }
 </script>
 
