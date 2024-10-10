@@ -24,6 +24,8 @@ urlpatterns = [
 
     path('patients', views.table_patients, name='patients'),
     path('patients/patients_form', views.form_patient, name='patients_form'),
+    path('patients/edit_patient/<int:patient_id>', views.edit_patient, name='edit_patient'),
+    path('patients/patients_detail/<int:patient_id>', views.patients_detail, name='patients_detail'),
 
     path('vital_signs', views.form_vital_signs, name='vital_signs_form'),
 

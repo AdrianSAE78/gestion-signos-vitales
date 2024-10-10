@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 
 # Create your models here.
@@ -17,7 +18,9 @@ class Patient (models.Model):
     
 
 class Vital_Signs (models.Model):
-    blood_pressure = models.DecimalField(max_digits=5, decimal_places=2, null=False)
+    date = models.DateField(auto_now_add=True)
+    systolic_blood_pressure = models.DecimalField(max_digits=5, decimal_places=2, null=False)
+    diastolic_blood_pressure = models.DecimalField(max_digits=5, decimal_places=2, null=False)
     temperature = models.DecimalField(max_digits=5, decimal_places=2, null=False)
     heart_Rate = models.DecimalField(max_digits=5, decimal_places=2, null=False)
     weight = models.DecimalField(max_digits=5, decimal_places=2, null=False)

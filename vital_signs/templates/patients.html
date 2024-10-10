@@ -37,12 +37,8 @@
                             <td>{{ patient.document_id }}</td>
                             {% if user.is_authenticated %}
                             <td>
-                                <a href="#" class="btn btn-sm btn-primary"><i class='bx bx-show bx-sm'></i></a>
-                                <a href="#" class="btn btn-sm btn-success"><i class='bx bx-pencil bx-sm'></i></a>
-                                <a href="#" class="btn btn-sm btn-danger"><i class='bx bx-trash bx-sm' ></i></a>
-                            </td>
-                            {% else %}
-                            <td>
+                                <a href="patients/patients_detail/{{ patient.id }}" class="btn btn-sm btn-primary"><i class='bx bx-show bx-sm'></i></a>
+                                <a href="patients/edit_patient/{{ patient.id }}" class="btn btn-sm btn-success"><i class='bx bx-pencil bx-sm'></i></a>
                                 <a href="#" class="btn btn-sm btn-danger"><i class='bx bx-trash bx-sm' ></i></a>
                             </td>
                             {% endif %}

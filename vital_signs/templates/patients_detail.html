@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Paciente {{ patients.middle_name}} {{ patients.last_name}}{% endblock title %}
+{% block content %}
+
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-2">
+            <a href="{% url "vital_signs:patients" %}" class="btn btn-sm btn-outline-secondary d-flex justify-content-center align-items-center mb-4">
+                <i class='bx bx-undo bx-sm'></i>
+                <span class="fw-bold">Pacientes</span>
+            </a>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="fw-bold text-success">{{ patients.middle_name}} {{ patients.last_name}} {{ patients.first_name }}</h4>
+            <hr class="border border-primary">
+            <h6 class="fw-bold text-warning mb-3">Datos del Paciente:</h6>
+            <div class="row">
+                <div class="col-6">
+                    <p><strong>Documento de identidad:</strong> {{ patients.document_id }}</p>
+                    <p><strong>Fecha de Nacimiento:</strong> {{ patients.birth_date }}</p>
+                </div>
+                <div class="col-6">
+                    <p><strong>Edad:</strong> {{ patients.age }}</p>
+                    <p><strong>Teléfono:</strong> {{ patients.phone }}</p>
+                </div>
+            </div>
+            <p><strong>Enfermedades:</strong> {{ patients.diseases }}</p>
+            <hr class="border border-primary">
+            <h6 class="fw-bold text-warning">Registro de Signos Vitales:</h6>
+            <div class="table-responsive py-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Presión Arterial Sistólica</th>
+                            <th>Presión Arterial Diastólica</th>
+                            <th>Temperatura</th>
+                            <th>Frecuencia Cardíaca</th>
+                            <th>Peso</th>
+                            <th>Altura</th>
+                            <th>IMC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sign in vital_signs %}
+                        <tr>
+                            <td>{{ sign.date|date:"d-m-Y" }}</td>
+                            <td>{{ sign.systolic_blood_pressure }}</td>
+                            <td>{{ sign.diastolic_blood_pressure }}</td>
+                            <td>{{ sign.temperature }}</td>
+                            <td>{{ sign.heart_Rate }}</td>
+                            <td>{{ sign.weight }}</td>
+                            <td>{{ sign.height }}</td>
+                            <td>{{ sign.body_mass_index }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="8">No hay registros de signos vitales para este paciente.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

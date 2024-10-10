@@ -1,0 +1,42 @@
+.inferior-superior-level {
+  border-color: red;
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px red;
+  outline: 0 none;
+}
+.good-level {
+  border-color: green;
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px green;
+  outline: 0 none;
+}
+
+
+
+.severe-malnutrition-type-2-3-obesity{
+  border-color: red;
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px red;
+  outline: 0 none;
+}
+
+.moderate-malnutrition-type-1-obesity{
+  border-color: #ff8147;
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px #ff8147;
+  outline: 0 none;
+}
+
+.low-weight-overweight{
+  border-color: #ffca33;
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px #ffca33;
+  outline: 0 none;
+}
+
+.normal-weight{
+  border-color: green;
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px green;
+  outline: 0 none;
+}
+
+.type-4-obesity{
+  border-color: #700600;
+  box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px #700600;
+  outline: 0 none;
+}

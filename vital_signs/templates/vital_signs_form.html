@@ -21,7 +21,12 @@
                         <label for="" class="form-label fw-bold">Presión Arterial: <span class="text-danger">*</span></label>
                     </div>
                     <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12 me-3 mb-3">
-                        {{ form.blood_pressure }}
+                        <div class="mb-2">
+                            {{ form.systolic_blood_pressure }}
+                        </div>
+                        <div>
+                            {{ form.diastolic_blood_pressure }}
+                        </div>
                     </div>
                     <div class="col-lg-auto col-md-6 col-sm-12 col-xs-12 me-2">
                         <label for="" class="form-label fw-bold">Temperatura: <span class="text-danger">*</span></label>
@@ -68,9 +73,6 @@
             theme: 'bootstrap-5',
             placeholder: "Selecciona un paciente"
         });
-
-        $('#id_heart_Rate').addClass('inferior-superior-level')
-        $('#id_height').addClass('good-level')
     })
     function calcIMC() {
         let weight = $('#id_weight').val();
@@ -79,7 +81,26 @@
 
         let finalIMC = weight/(height)**2
 
+        massIndexLevel(finalIMC.toFixed(2))
+
         return IMC.val(finalIMC.toFixed(2))
+
+    }
+
+    function bloodPressureLevel(){
+        let systolicBloodPressure = parseFloat($('#id_systolic_blood_pressure').val());
+        let diastolicBloodPressure = parseFloat($('#id_diastolic_blood_pressure').val());
+        if (systolicBloodPressure == 120 && diastolicBloodPressure == 80){
+            $('#id_systolic_blood_pressure').removeClass('inferior-superior-level')
+            $('#id_systolic_blood_pressure').addClass('good-level')
+            $('#id_diastolic_blood_pressure').removeClass('inferior-superior-level')
+            $('#id_diastolic_blood_pressure').addClass('good-level')
+        } else{
+            $('#id_systolic_blood_pressure').removeClass('good-level')
+            $('#id_systolic_blood_pressure').addClass('inferior-superior-level')
+            $('#id_diastolic_blood_pressure').removeClass('good-level')
+            $('#id_diastolic_blood_pressure').addClass('inferior-superior-level')
+        }
     }
 
     function temperatureLevel(){
@@ -92,6 +113,53 @@
             $('#id_temperature').addClass('inferior-superior-level')
         }
     }
+
+    function heartRateLevel(){
+        let heartRate = parseFloat($('#id_heart_Rate').val());
+        if (heartRate >= 60 && heartRate <= 100){
+            $('#id_heart_Rate').removeClass('inferior-superior-level')
+            $('#id_heart_Rate').addClass('good-level')
+        } else{
+            $('#id_heart_Rate').removeClass('good-level')
+            $('#id_heart_Rate').addClass('inferior-superior-level')
+        }
+    }
+
+    function massIndexLevel(massIndex){
+        if (massIndex <= 16 || massIndex >= 35 && massIndex <= 49.9){
+            $('#id_body_mass_index').addClass('severe-malnutrition-type-2-3-obesity')
+            $('#id_body_mass_index').removeClass('moderate-malnutrition-type-1-obesity')
+            $('#id_body_mass_index').removeClass('low-weight-overweight')
+            $('#id_body_mass_index').removeClass('normal-weight')
+            $('#id_body_mass_index').removeClass('type-4-obesity')
+            console.log("hola")
+        } else if (massIndex >= 16.1 && massIndex <= 18.4 || massIndex >= 30 && massIndex <= 34.9){
+            $('#id_body_mass_index').removeClass('severe-malnutrition-type-2-3-obesity')
+            $('#id_body_mass_index').addClass('moderate-malnutrition-type-1-obesity')
+            $('#id_body_mass_index').removeClass('low-weight-overweight')
+            $('#id_body_mass_index').removeClass('normal-weight')
+            $('#id_body_mass_index').removeClass('type-4-obesity')
+        } else if (massIndex >= 18.5 && massIndex <= 22 || massIndex >= 25 && massIndex <= 29.9){
+            $('#id_body_mass_index').removeClass('severe-malnutrition-type-2-3-obesity')
+            $('#id_body_mass_index').removeClass('moderate-malnutrition-type-1-obesity')
+            $('#id_body_mass_index').addClass('low-weight-overweight')
+            $('#id_body_mass_index').removeClass('normal-weight')
+            $('#id_body_mass_index').removeClass('type-4-obesity')
+        } else if (massIndex >= 22.1 && massIndex <= 24.9){
+            $('#id_body_mass_index').removeClass('severe-malnutrition-type-2-3-obesity')
+            $('#id_body_mass_index').removeClass('moderate-malnutrition-type-1-obesity')
+            $('#id_body_mass_index').removeClass('low-weight-overweight')
+            $('#id_body_mass_index').addClass('normal-weight')
+            $('#id_body_mass_index').removeClass('type-4-obesity')
+        } else {
+            $('#id_body_mass_index').removeClass('severe-malnutrition-type-2-3-obesity')
+            $('#id_body_mass_index').removeClass('moderate-malnutrition-type-1-obesity')
+            $('#id_body_mass_index').removeClass('low-weight-overweight')
+            $('#id_body_mass_index').removeClass('normal-weight')
+            $('#id_body_mass_index').addClass('type-4-obesity')
+        }
+    }
+    
 </script>
 
 {% endblock content %}
